@@ -2,11 +2,13 @@
   <h2>{{ selectedHero.name | uppercase }} Details</h2>
   <div><span>id: </span>{{selectedHero.id}}</div>
   <div><span>name: </span>{{selectedHero.name}}</div>
+  <div><span>email: </span>{{selectedHero.email}}</div>
 
 
   <div>
-    <label>name:
+    <label>details:
       <input [(ngModel)]="selectedHero.name" placeholder="name">
+      <input [(ngModel)]="selectedHero.email" placeholder="email">
     </label>
   </div>
 </div>
