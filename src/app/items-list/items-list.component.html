@@ -1,10 +1,26 @@
-<div *ngFor="let item of resultList">
- <ul>
-   <li>
-     {{item.itemName}}
-   </li>
-   <li>
-     {{item.itemPrice}}
-   </li>
- </ul>
+<app-search></app-search>
+<div class="row">
+  <div class="col s12 cards-container">
+    <div *ngFor="let item of resultList">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="{{item.imageUrlList[0]}}">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">{{item.itemName}}<i class="material-icons right">more_vert</i></span>
+          <p><a href="{{item.redirectUrl}}">Buy Now for {{item.itemPrice}}{{item.currency}} </a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{item.itemName}}<i
+            class="material-icons right">close</i></span>
+          <ul class="collection">
+            <li class="collection-item">Provider: {{item.vendor}}</li>
+            <li class="collection-item">Location: {{item.location}}</li>
+            <li class="collection-item">Category: {{item.vendorCategory}}</li>
+            <li class="collection-item">Section: {{item.vendorSubCategory}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

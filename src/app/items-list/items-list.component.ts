@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { ItemsListService } from './items-list.service';
 import { Location } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Item} from '../models/Item';
 
 
@@ -10,15 +10,27 @@ import {Item} from '../models/Item';
   templateUrl: './items-list.component.html',
   styleUrls: ['./items-list.component.css']
 })
-export class ItemsListComponent implements OnInit {
+export class ItemsListComponent implements OnInit, OnDestroy {
   resultList: Item[];
+  navigationSubscription;
+
 
   constructor(private route: ActivatedRoute,
-              private itemsListService: ItemsListService,
-              private location: Location) { }
+                private itemsListService: ItemsListService,
+                private location: Location,
+                private router: Router) { }
 
   ngOnInit() {
     this.getItemsList();
+    this.navigationSubscription = this.router.events.subscribe((e: any) => {
+      // If it is a NavigationEnd event re-initalise the component
+      let k;
+      if (e instanceof NavigationEnd) {
+        if (this.route.snapshot.paramMap.get('keyword')) {
+          this.getItemsList();
+        }
+      }
+    });
   }
 
 
@@ -26,6 +38,10 @@ export class ItemsListComponent implements OnInit {
     const keyword = this.route.snapshot.paramMap.get('keyword');
     this.itemsListService.getItems(keyword)
       .subscribe(list => this.resultList = list);
+  }
+
+  ngOnDestroy() {
+    console.log('destroying....');
   }
 
 

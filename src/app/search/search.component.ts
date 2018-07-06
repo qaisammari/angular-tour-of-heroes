@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {SearchService} from './search.service';
 import {AutocompleteResponse} from './AutoCompleteResponse';
 import {logging} from 'selenium-webdriver';
-import {Router} from "@angular/router";
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
 
 
@@ -17,10 +17,13 @@ export class SearchComponent implements OnInit {
   items: AutocompleteResponse[];
 
 
+
   constructor(private searchService: SearchService,
-              private router: Router) { }
+              private router: Router,
+              private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.keyword = this.route.snapshot.paramMap.get('keyword');
   }
 
   getSuggestions(event): void {
@@ -34,11 +37,8 @@ export class SearchComponent implements OnInit {
     }
   }
 
-
   goToList(keyword: string) {
-
-    this.router.navigate(['/items', keyword]);
-
+      this.router.navigate(['/items', keyword]);
   }
 
 }

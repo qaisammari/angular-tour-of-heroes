@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 // import { InMemoryDataService } from './in-memory-data.service';
 import { SearchComponent } from './search/search.component';
 import { ItemsListComponent } from './items-list/items-list.component';
+import {RouterModule} from '@angular/router';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
@@ -26,7 +27,7 @@ import { ItemsListComponent } from './items-list/items-list.component';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
     // BrowserAnimationsModule,
     // MatButtonModule,
     // MatCheckboxModule,
