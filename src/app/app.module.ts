@@ -10,9 +10,15 @@ import { MessagesComponent } from './messages/messages.component';
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HttpClientModule } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InMemoryDataService } from './in-memory-data.service';
+// import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+// import { InMemoryDataService } from './in-memory-data.service';
 import { SearchComponent } from './search/search.component';
+import { ItemsListComponent } from './items-list/items-list.component';
+// import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+// import {MatButtonModule, MatCheckboxModule} from '@angular/material';
+// import {MatAutocompleteModule} from '@angular/material/autocomplete';
+
+
 
 
 @NgModule({
@@ -21,7 +27,11 @@ import { SearchComponent } from './search/search.component';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
+    // BrowserAnimationsModule,
+    // MatButtonModule,
+    // MatCheckboxModule,
+    // MatAutocompleteModule
+    // HttpClientInMemoryWebApiModule.forRoot(InMemoryDataService, { dataEncapsulation: false })
   ],
   declarations: [
     AppComponent,
@@ -30,7 +40,8 @@ import { SearchComponent } from './search/search.component';
     HeroDetailComponent,
     MessagesComponent,
     DashboardComponent,
-    SearchComponent
+    SearchComponent,
+    ItemsListComponent
   ],
   bootstrap: [ AppComponent ]
 })

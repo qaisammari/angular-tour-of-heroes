@@ -5,6 +5,15 @@
   <div class="search-box">
     <!--<input [(ngModel)]="selectedHero.name" placeholder="What do you want to shop today?">-->
     <a class="btn-floating pulse"><i class="material-icons">search</i></a>
-    <input placeholder="What do you want to shop today?">
+
+    <div class="autocomplete">
+      <input [(ngModel)]="keyword" placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)">
+      <div id="myInputautocomplete-list" class="autocomplete-items" >
+        <div *ngFor="let item of items" (click)="goToList(item.itemTitle)" >
+          {{item.itemTitle}}
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
