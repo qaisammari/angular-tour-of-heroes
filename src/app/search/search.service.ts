@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
-import {AutocompleteResponse} from './AutoCompleteResponse';
+import {AutocompleteResponse} from '../models/AutoCompleteResponse';
 
 @Injectable({
   providedIn: 'root'

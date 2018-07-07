@@ -11,7 +11,7 @@ const routes: Routes = [
   { path: 'detail/:id', component: HeroDetailComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'search', component: SearchComponent },
-  { path: 'items/:keyword', component: ItemsListComponent, runGuardsAndResolvers: 'paramsChange'},
+  { path: 'items/:keyword', component: SearchComponent, runGuardsAndResolvers: 'paramsChange'},
   { path: '', redirectTo: '/search', pathMatch: 'full' }
 
 ];

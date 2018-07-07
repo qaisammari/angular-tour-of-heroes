@@ -1,4 +1,21 @@
 /* AppComponent's private CSS styles */
+/* You can add global styles to this file, and also import other style files */
+/*@import "~@angular/material/prebuilt-themes/indigo-pink.css";*/
+body {
+  display: flex !important;
+  min-height: 100vh !important;
+  flex-direction: column !important;
+  /* make sure the body does not have a margin */
+  margin: 0 !important;
+  /* this forces the body tag to fill the height of the window */
+  height: 100% !important;
+}
+
+main {
+  flex: 1 0 auto !important;
+}
+
+
 h1 {
   font-size: 1.2em;
   color: #999;
@@ -30,4 +47,10 @@ nav a.active {
 
 .logo {
   padding: 2rem;
+}
+
+.page-footer {
+  padding-top: 20px;
+  color: #fff;
+  background-color: #9f5eb0;
 }

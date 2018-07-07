@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Input, OnDestroy, OnInit} from '@angular/core';
 import {SearchService} from './search.service';
-import {AutocompleteResponse} from './AutoCompleteResponse';
+import {AutocompleteResponse} from '../models/AutoCompleteResponse';
 import {logging} from 'selenium-webdriver';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 
@@ -15,6 +15,9 @@ import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 export class SearchComponent implements OnInit {
   keyword: string;
   items: AutocompleteResponse[];
+  showAutocomplete: boolean;
+  loading: boolean;
+  message: string;
 
 
 
@@ -24,13 +27,17 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     this.keyword = this.route.snapshot.paramMap.get('keyword');
+    this.showAutocomplete = false;
+    this.loading = false;
   }
 
   getSuggestions(event): void {
+    this.showAutocomplete = false;
     console.log(event);
     if (event.length > 1) {
       this.searchService.getSuggestions(event).subscribe(response => {
         this.items = response;
+        this.showAutocomplete = true;
       });
     } else {
       console.log('length is too short');
@@ -38,7 +45,13 @@ export class SearchComponent implements OnInit {
   }
 
   goToList(keyword: string) {
-      this.router.navigate(['/items', keyword]);
+    this.keyword = keyword;
+    this.router.navigate(['/items', keyword]);
+    this.showAutocomplete = false;
+  }
+
+  receiveLoadingEvent($event) {
+    this.loading = $event;
   }
 
 }

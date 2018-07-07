@@ -1,4 +1,3 @@
-<app-search></app-search>
 <div class="row">
   <div class="col s12 cards-container">
     <div *ngFor="let item of resultList">
@@ -8,7 +7,9 @@
         </div>
         <div class="card-content">
           <span class="card-title activator grey-text text-darken-4">{{item.itemName}}<i class="material-icons right">more_vert</i></span>
-          <p><a href="{{item.redirectUrl}}">Buy Now for {{item.itemPrice}}{{item.currency}} </a></p>
+          <p><a target="_blank" href="{{item.redirectUrl}}"> {{item.itemPrice}}{{item.currency}}</a></p>
+          <p><img src="/assets/img/wallmart.png" *ngIf="item.vendor == 'WALMART'"></p>
+          <p><img src="/assets/img/ebay.png" *ngIf="item.vendor == 'EBAY'"></p>
         </div>
         <div class="card-reveal">
           <span class="card-title grey-text text-darken-4">{{item.itemName}}<i
@@ -18,6 +19,7 @@
             <li class="collection-item">Location: {{item.location}}</li>
             <li class="collection-item">Category: {{item.vendorCategory}}</li>
             <li class="collection-item">Section: {{item.vendorSubCategory}}</li>
+            <li class="collection-item">UPC: {{item.upc}}</li>
           </ul>
         </div>
       </div>

@@ -1,16 +1,25 @@
-<div class="search-container">
+<div class="search-container" xmlns="">
   <div class="search-box">
     <!--<input [(ngModel)]="selectedHero.name" placeholder="What do you want to shop today?">-->
-    <a class="btn-floating pulse"><i class="material-icons">search</i></a>
+    <a class="btn-floating" [class]="loading? 'btn-floating pulse': 'btn-floating'"><i class="material-icons">search</i></a>
 
     <div class="autocomplete">
-      <input [(ngModel)]="keyword" placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)">
-      <div id="myInputautocomplete-list" class="autocomplete-items" >
-        <div *ngFor="let item of items" (click)="goToList(item.itemTitle)" >
-          {{item.itemTitle}}
+      <input id="autocomplete-input" class="autocomplete" [(ngModel)]="keyword"
+             placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)">
+      <div id="myInputautocomplete-list" class="autocomplete-items">
+        <div class="collection" *ngIf="items && showAutocomplete">
+          <a class="collection-item" *ngFor="let item of items" (click)="goToList(item.itemTitle)">
+            {{item.itemTitle}}
+          </a>
         </div>
+        <!--<ul class="autocomplete-content dropdown-content">-->
+        <!--<li *ngFor="let item of items" (click)="goToList(item.itemTitle)">-->
+        <!--<span>{{item.itemTitle}}</span>-->
+        <!--</li>-->
+        <!--</ul>-->
       </div>
     </div>
-
   </div>
 </div>
+
+<app-items-list (loadingEvent)="receiveLoadingEvent($event)"></app-items-list>
