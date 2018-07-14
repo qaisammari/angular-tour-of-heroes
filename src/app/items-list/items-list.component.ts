@@ -40,7 +40,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       this.sendLoadingEvent(true);
       this.itemsListService.getItems(keyword)
         .subscribe(list => {
-          this.resultList = list;
+          this.resultList = list.itemList;
           this.sendLoadingEvent(false);
         });
     }

@@ -10,4 +10,5 @@ export class Item {
   location: string;
   vendorSubCategory: string;
   upc: string;
+  rating: string;
 }

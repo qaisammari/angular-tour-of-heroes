@@ -3,6 +3,7 @@ import {catchError, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import {Item} from '../models/Item';
 import {HttpClient, HttpParams} from '@angular/common/http';
+import {HttpResponse} from '../models/HttpResponse';
 
 
 @Injectable({
@@ -14,10 +15,10 @@ export class ItemsListService {
 
   constructor( private http: HttpClient ) { }
 
-  getItems(keyword: string): Observable<Item[]> {
+  getItems(keyword: string): Observable<HttpResponse> {
     console.log('items list service: keyword received : ' + keyword);
     const params = new HttpParams().set('keyword', keyword);
-    return this.http.get<Item[]>(this.itemsUrl, {params: params})
+    return this.http.get<HttpResponse>(this.itemsUrl, {params: params})
       .pipe(
         tap(response => console.log(response))
       );

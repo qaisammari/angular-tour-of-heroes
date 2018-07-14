@@ -41,3 +41,7 @@
 .card .card-content .card-title {
   line-height: unset;
 }
+
+.checked {
+  color: orange;
+}

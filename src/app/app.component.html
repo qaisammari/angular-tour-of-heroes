@@ -1,41 +1,49 @@
 <!--<h1>{{title}}</h1>-->
 
 <!--<nav>-->
-  <!--<a routerLink="/heroes">Heroes</a>-->
-  <!--<a routerLink="/dashboard">Dashboard</a>-->
+<!--<a routerLink="/heroes">Heroes</a>-->
+<!--<a routerLink="/dashboard">Dashboard</a>-->
 <!--</nav>-->
 
-<div class="search-container">
-  <div class="logo">
-    <img src="/assets/img/logo.png">
-  </div>
-</div>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
 
-<footer class="page-footer">
-  <div class="container">
-    <div class="row">
-      <div class="col l6 s12">
-        <h5 class="white-text">Shipzo</h5>
-        <p class="grey-text text-lighten-4">This is DEMO application.</p>
-      </div>
-      <div class="col l4 offset-l2 s12">
-        <!--<h5 class="white-text">Links</h5>-->
-        <!--<ul>-->
+  <!-- Page Content goes here -->
+
+  <div class="search-container">
+    <div class="logo">
+      <img src="/assets/img/logo.png">
+    </div>
+  </div>
+<div class="container">
+
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Shipzo</h5>
+          <p class="grey-text text-lighten-4">This is DEMO application.</p>
+        </div>
+        <div class="col l4 offset-l2 s12">
+          <!--<h5 class="white-text">Links</h5>-->
+          <!--<ul>-->
           <!--<li><a class="grey-text text-lighten-3" href="#!">Link 1</a></li>-->
           <!--<li><a class="grey-text text-lighten-3" href="#!">Link 2</a></li>-->
           <!--<li><a class="grey-text text-lighten-3" href="#!">Link 3</a></li>-->
           <!--<li><a class="grey-text text-lighten-3" href="#!">Link 4</a></li>-->
-        <!--</ul>-->
+          <!--</ul>-->
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer-copyright">
-    <div class="container">
-      © 2018 Copyright Reserved
-      <a class="grey-text text-lighten-4 right">Shipzo.io</a>
+    <div class="footer-copyright">
+      <div class="container">
+        © 2018 Copyright Reserved
+        <a class="grey-text text-lighten-4 right">Shipzo.io</a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
+
+</div>
+
 

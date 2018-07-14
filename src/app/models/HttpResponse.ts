@@ -1,5 +1,5 @@
-export class Suggestion {
-  message: string;
-  errorCode: number;
-  date: object;
+import {Item} from './Item';
+
+export class HttpResponse {
+  itemList: Item[];
 }

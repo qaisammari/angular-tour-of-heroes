@@ -4,13 +4,16 @@
     <a class="btn-floating" [class]="loading? 'btn-floating pulse': 'btn-floating'"><i class="material-icons">search</i></a>
 
     <div class="autocomplete">
-      <input id="autocomplete-input" class="autocomplete" [(ngModel)]="keyword"
+      <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword"
              placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)">
       <div id="myInputautocomplete-list" class="autocomplete-items">
         <div class="collection" *ngIf="items && showAutocomplete">
-          <a class="collection-item" *ngFor="let item of items" (click)="goToList(item.itemTitle)">
-            {{item.itemTitle}}
-          </a>
+          <div>
+            <a class="collection-item" *ngFor="let item of items" (click)="goToList(item.itemTitle)">
+              {{item.itemTitle}}
+            </a>
+          </div>
+
         </div>
         <!--<ul class="autocomplete-content dropdown-content">-->
         <!--<li *ngFor="let item of items" (click)="goToList(item.itemTitle)">-->
