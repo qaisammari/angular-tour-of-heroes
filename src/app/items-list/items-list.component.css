@@ -45,3 +45,12 @@
 .checked {
   color: orange;
 }
+
+.filter {
+  background-color: #9f5eb0;
+}
+
+.filter span {
+  margin: 0 1rem;
+  color: #fff;
+}

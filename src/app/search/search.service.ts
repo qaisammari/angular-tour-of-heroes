@@ -16,7 +16,7 @@ export class SearchService {
     console.log('search service: keyword receieved : ' + keyword);
     const params = new HttpParams().set('keyword', keyword);
 
-    return this.http.get<AutocompleteResponse[]>('http://localhost:8080/autocomplete', {params: params })
+    return this.http.get<AutocompleteResponse[]>('http://130.211.113.239:8080/autocomplete', {params: params })
       .pipe(
         tap(response => console.log(response))
       );

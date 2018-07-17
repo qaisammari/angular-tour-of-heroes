@@ -12,7 +12,10 @@ import {Item} from '../models/Item';
 })
 export class ItemsListComponent implements OnInit, OnDestroy {
   resultList: Item[];
+  originalList: Item[];
   navigationSubscription;
+  walmartChecked = false;
+  ebayChecked = false;
   @Output() loadingEvent = new EventEmitter<boolean>();
 
 
@@ -41,6 +44,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       this.itemsListService.getItems(keyword)
         .subscribe(list => {
           this.resultList = list.itemList;
+          this.originalList = list.itemList;
           this.sendLoadingEvent(false);
         });
     }
@@ -52,6 +56,38 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
   sendLoadingEvent(event: boolean): void {
     this.loadingEvent.emit(event);
+  }
+
+
+  walmartFilter(event) {
+    if (event.target.checked) {
+      this.walmartChecked = true;
+      this.resultList = this.originalList.filter(item => item.vendor === 'WALMART');
+    } else {
+      this.walmartChecked = false;
+      if (!this.walmartChecked && !this.ebayChecked) {
+        this.resultList = this.originalList;
+      } else {
+        this.resultList = this.originalList.filter(item => item.vendor !== 'WALMART');
+      }
+    }
+
+  }
+
+
+  ebayFilter(event) {
+    if (event.target.checked) {
+      this.ebayChecked = true;
+      this.resultList = this.originalList.filter(item => item.vendor === 'EBAY');
+    } else {
+      this.ebayChecked = false;
+      if (!this.walmartChecked && !this.ebayChecked) {
+        this.resultList = this.originalList;
+      } else {
+        this.resultList = this.originalList.filter(item => item.vendor !== 'EBAY');
+      }
+    }
+
   }
 
 
