@@ -23,6 +23,9 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   fourStarsChecked = false;
   fiveStarsChecked = false;
   destinations: string[];
+  maxPriceFilter: number;
+  maxPrice: number;
+  minPriceFilter: number;
   destinationsFilter: string[];
   @Output() loadingEvent = new EventEmitter<boolean>();
 
@@ -54,7 +57,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
         .subscribe(list => {
           this.resultList = list.itemList;
           this.originalList = list.itemList;
-          this.getUniqueDestinations();
+          this.getUniqueDestinationsAndMaxPrice();
           this.sendLoadingEvent(false);
         });
     }
@@ -237,16 +240,52 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       }
       this.resultList = tmp;
     }
+
+
+    if (this.minPriceFilter || this.maxPriceFilter) {
+      let tmp: Item[] = [];
+
+      if (!this.minPriceFilter) {
+        this.minPriceFilter = 0;
+      }
+      if (!this.maxPriceFilter) {
+        this.maxPriceFilter = this.maxPrice;
+      }
+      for (let i = 0; i < this.resultList.length; i++) {
+        tmp = this.resultList.filter(item => item.itemPrice >= this.minPriceFilter && item.itemPrice <= this.maxPriceFilter);
+      }
+      this.resultList = tmp;
+    }
   }
 
 
-  getUniqueDestinations() {
+  getUniqueDestinationsAndMaxPrice() {
     this.destinations = [];
+    this.maxPrice = 0;
     for (let i = 0; i < this.originalList.length; i++) {
       if (!this.destinations.includes(this.originalList[i].shipToDestinations)) {
         this.destinations.push(this.originalList[i].shipToDestinations);
       }
+      if (this.originalList[i].itemPrice > this.maxPrice) {
+        this.maxPrice = this.originalList[i].itemPrice;
+      }
     }
   }
 
+
+  priceRangeOnUpdate($event) {
+    return;
+  }
+
+  priceRangeOnChange($event) {
+    return;
+  }
+
+  priceRangeOnFinish($event) {
+    console.log($event.from + '-' + $event.to);
+    this.maxPriceFilter = $event.to;
+    this.minPriceFilter = $event.from;
+    this.filterAll()
+    return;
+  }
 }

@@ -1,0 +1,14 @@
+{
+  "apps": [
+    {
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.min.js",
+        "../node_modules/ion-rangeslider/js/ion.rangeSlider.min.js"
+      ],
+      "styles": [
+        "../node_modules/ion-rangeslider/css/ion.rangeSlider.css",
+        "../node_modules/ion-rangeslider/css/ion.rangeSlider.skinFlat.css"
+      ]
+    }
+    ]
+}

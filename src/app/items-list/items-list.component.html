@@ -19,12 +19,6 @@
 
 <nav class="filter">
 
-
-</nav>
-
-
-<nav class="filter">
-
   <div action="#" style="display: flex;" *ngIf="destinations">
     <span *ngFor="let destination of destinations" >
       <label>
@@ -71,7 +65,32 @@
   </div>
 </nav>
 
+<nav class="slider-container">
+<span >
+  <ion-range-slider *ngIf="maxPrice" #sliderElement
+                    type="double"
+                    [min]="0"
+                    max="{{maxPrice}}"
+                    from="0"
+                    from_min="0"
+                    from_max="{{maxPrice-10}}"
+                    from_shadow="false"
+                    to="{{maxPrice}}"
+                    to_min="10"
+                    to_max="{{maxPrice}}"
+                    to_shadow="false"
+                    grid="false"
+                    grid_num="10"
+                    prefix="Price: "
+                    postfix=" USD"
+                    decorate_both="false"
+                    (onUpdate)="priceRangeOnUpdate($event)"
+                    (onChange)="priceRangeOnChange($event)"
+                    (onFinish)="priceRangeOnFinish($event)"></ion-range-slider>
+</span>
 
+
+</nav>
 <!--<div class="flex">-->
   <!--<div class="sidenavs">-->
     <!--<div>-->

@@ -18,6 +18,8 @@ import {RouterModule} from '@angular/router';
 // import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 // import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { IonRangeSliderModule } from 'ng2-ion-range-slider';
+
 
 
 
@@ -27,7 +29,8 @@ import {RouterModule} from '@angular/router';
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    IonRangeSliderModule
     // BrowserAnimationsModule,
     // MatButtonModule,
     // MatCheckboxModule,

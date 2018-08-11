@@ -55,8 +55,6 @@
   color: #fff;
 }
 
-
-
 /*side nav*/
 sidenavs {
   height: 100%;
@@ -89,4 +87,10 @@ sidenavs {
 @media screen and (max-height: 450px) {
   .sidenavs {padding-top: 15px;}
   .sidenavs a {font-size: 18px;}
+}
+
+
+.slider-container {
+  background-color: #9f5eb0;
+  padding: 1rem 2rem 0;
 }
