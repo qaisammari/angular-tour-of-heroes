@@ -1,5 +1,4 @@
-
-<nav class="filter">
+<nav class="filter" xmlns="">
 
   <div action="#" style="display: flex;">
     <span>
@@ -12,6 +11,25 @@
       <label>
         <input type="checkbox" (change)="ebayFilter($event)"/>
         <span>Ebay</span>
+      </label>
+    </span>
+  </div>
+</nav>
+
+
+<nav class="filter">
+
+
+</nav>
+
+
+<nav class="filter">
+
+  <div action="#" style="display: flex;" *ngIf="destinations">
+    <span *ngFor="let destination of destinations" >
+      <label>
+        <input type="checkbox" (change)="destinationFilter(destination, $event)"/>
+        <span>{{destination}}</span>
       </label>
     </span>
   </div>
@@ -88,6 +106,7 @@
               <span class="fa fa-star" [class.checked]="item.rating>=5"></span></p>
             <p><img src="/assets/img/wallmart.png" *ngIf="item.vendor == 'WALMART'"></p>
             <p><img src="/assets/img/ebay.png" *ngIf="item.vendor == 'EBAY'"></p>
+            <p>Shipment: {{item.shipToDestinations}}</p>
           </div>
           <div class="card-reveal">
             <div>
@@ -108,4 +127,5 @@
       </div>
     </div>
   </div>
+
 <!--</div>-->

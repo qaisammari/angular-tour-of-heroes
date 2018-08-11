@@ -11,4 +11,5 @@ export class Item {
   vendorSubCategory: string;
   upc: string;
   rating: number;
+  shipToDestinations: string;
 }

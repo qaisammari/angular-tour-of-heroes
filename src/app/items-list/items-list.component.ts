@@ -10,6 +10,7 @@ import {Item} from '../models/Item';
   templateUrl: './items-list.component.html',
   styleUrls: ['./items-list.component.css']
 })
+
 export class ItemsListComponent implements OnInit, OnDestroy {
   resultList: Item[];
   originalList: Item[];
@@ -21,6 +22,8 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   threeStarsChecked = false;
   fourStarsChecked = false;
   fiveStarsChecked = false;
+  destinations: string[];
+  destinationsFilter: string[];
   @Output() loadingEvent = new EventEmitter<boolean>();
 
 
@@ -51,6 +54,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
         .subscribe(list => {
           this.resultList = list.itemList;
           this.originalList = list.itemList;
+          this.getUniqueDestinations();
           this.sendLoadingEvent(false);
         });
     }
@@ -83,8 +87,23 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       this.ebayChecked = false;
     }
     this.filterAll();
+  }
 
-
+  destinationFilter(destination, event){
+    let index = -1;
+      if (this.destinationsFilter) {
+        index = this.destinationsFilter.indexOf(destination);
+      } else {
+        this.destinationsFilter = [];
+      }
+    if (event.target.checked && index === -1) {
+      this.destinationsFilter.push(destination);
+    } else {
+      if (index !== -1) {
+        this.destinationsFilter.splice(index, 1);
+      }
+    }
+    this.filterAll();
   }
 
   oneStarFilter(event) {
@@ -211,8 +230,23 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       this.resultList = tmp;
     }
 
-
+    if(this.destinationsFilter && this.destinationsFilter.length > 0) {
+      let tmp: Item[] = [];
+      for (let i = 0; i < this.destinationsFilter.length; i++) {
+        tmp = tmp.concat(this.resultList.filter(item => item.shipToDestinations === this.destinationsFilter[i]));
+      }
+      this.resultList = tmp;
+    }
   }
 
+
+  getUniqueDestinations() {
+    this.destinations = [];
+    for (let i = 0; i < this.originalList.length; i++) {
+      if (!this.destinations.includes(this.originalList[i].shipToDestinations)) {
+        this.destinations.push(this.originalList[i].shipToDestinations);
+      }
+    }
+  }
 
 }
