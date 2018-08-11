@@ -1,6 +1,6 @@
 .search-container {
   /*width: 100%;*/
-  width: 50%;
+  width: 80%;
   /*margin-top: 10%;*/
   /*padding: 1rem;*/
   font-size: 2rem;
@@ -72,12 +72,13 @@ input {
 
 .collection {
   position: absolute;
-  left: 15rem;
-  top: 9.6rem;
+  left: 0rem;
+  top: 0rem;
   -webkit-box-shadow: 0 1px 3px #aaa;
   box-shadow: 0 1px 3px #aaa;
   z-index: 9999;
   cursor: pointer;
+  margin: 0;
 }
 
 
@@ -87,4 +88,27 @@ input {
   position: relative;
 }
 
+.autocomplete-items {
+  position: relative;
+  margin: 0;
+  padding: 0;
+}
 
+
+input[_ngcontent-c2] {
+  margin-bottom: 0;
+}
+
+.btn {
+  color: #fff !important;
+  margin-bottom:0 !important; ;
+  height: 3rem!important;
+  padding: 0.7rem;
+  margin: 0 2rem;
+  width: 10rem;
+  text-transform: capitalize;
+}
+
+.autocomplete {
+  margin-bottom: 1rem;
+}

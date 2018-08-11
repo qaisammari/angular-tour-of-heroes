@@ -1,5 +1,6 @@
-<nav class="filter" xmlns="">
+<span class="new badge" data-badge-caption="Provider Filter">1</span>
 
+<nav class="filter" xmlns="">
   <div action="#" style="display: flex;">
     <span>
       <label>
@@ -16,9 +17,8 @@
   </div>
 </nav>
 
-
+<span class="new badge" data-badge-caption="Shipment Filter">2</span>
 <nav class="filter">
-
   <div action="#" style="display: flex;" *ngIf="destinations">
     <span *ngFor="let destination of destinations" >
       <label>
@@ -29,8 +29,9 @@
   </div>
 </nav>
 
-<nav class="filter">
+<span class="new badge" data-badge-caption="Rating Filter">3</span>
 
+<nav class="filter">
   <div action="#" style="display: flex;">
     <span>
       <label>
@@ -65,8 +66,11 @@
   </div>
 </nav>
 
+<span class="new badge" data-badge-caption="Price Filter">4</span>
 <nav class="slider-container">
-<span >
+
+
+  <span class="slider-span">
   <ion-range-slider *ngIf="maxPrice" #sliderElement
                     type="double"
                     [min]="0"
