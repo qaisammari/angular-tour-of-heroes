@@ -1,6 +1,6 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import { ItemsListService } from './items-list.service';
-import { Location } from '@angular/common';
+import {ItemsListService} from './items-list.service';
+import {Location} from '@angular/common';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Item} from '../models/Item';
 
@@ -16,13 +16,19 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   navigationSubscription;
   walmartChecked = false;
   ebayChecked = false;
+  oneStarChecked = false;
+  twoStarsChecked = false;
+  threeStarsChecked = false;
+  fourStarsChecked = false;
+  fiveStarsChecked = false;
   @Output() loadingEvent = new EventEmitter<boolean>();
 
 
   constructor(private route: ActivatedRoute,
-                private itemsListService: ItemsListService,
-                private location: Location,
-                private router: Router) { }
+              private itemsListService: ItemsListService,
+              private location: Location,
+              private router: Router) {
+  }
 
   ngOnInit() {
     this.getItemsList();
@@ -62,15 +68,10 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   walmartFilter(event) {
     if (event.target.checked) {
       this.walmartChecked = true;
-      this.resultList = this.originalList.filter(item => item.vendor === 'WALMART');
     } else {
       this.walmartChecked = false;
-      if (!this.walmartChecked && !this.ebayChecked) {
-        this.resultList = this.originalList;
-      } else {
-        this.resultList = this.originalList.filter(item => item.vendor !== 'WALMART');
-      }
     }
+    this.filterAll();
 
   }
 
@@ -78,15 +79,138 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   ebayFilter(event) {
     if (event.target.checked) {
       this.ebayChecked = true;
-      this.resultList = this.originalList.filter(item => item.vendor === 'EBAY');
     } else {
       this.ebayChecked = false;
-      if (!this.walmartChecked && !this.ebayChecked) {
-        this.resultList = this.originalList;
-      } else {
-        this.resultList = this.originalList.filter(item => item.vendor !== 'EBAY');
-      }
     }
+    this.filterAll();
+
+
+  }
+
+  oneStarFilter(event) {
+    if (event.target.checked) {
+      this.oneStarChecked = true;
+    } else {
+      this.oneStarChecked = false;
+    }
+    this.filterAll();
+
+  }
+
+  twoStarsFilter(event) {
+    if (event.target.checked) {
+      this.twoStarsChecked = true;
+    } else {
+      this.twoStarsChecked = false;
+    }
+    this.filterAll();
+
+  }
+
+  threeStarsFilter(event) {
+    if (event.target.checked) {
+      this.threeStarsChecked = true;
+    } else {
+      this.threeStarsChecked = false;
+    }
+    this.filterAll();
+
+  }
+
+  fourStarsFilter(event) {
+    if (event.target.checked) {
+      this.fourStarsChecked = true;
+    } else {
+      this.fourStarsChecked = false;
+    }
+    this.filterAll();
+  }
+
+  fiveStarsFilter(event) {
+    if (event.target.checked) {
+      this.fiveStarsChecked = true;
+    } else {
+      this.fiveStarsChecked = false;
+    }
+    this.filterAll();
+
+  }
+
+  filterAll() {
+
+    this.resultList = this.originalList;
+
+    if (this.walmartChecked
+      || this.ebayChecked) {
+
+      let walmartList: Item[];
+      let ebayList: Item[];
+
+      if (this.walmartChecked) {
+        walmartList = this.resultList.filter(item => item.vendor === 'WALMART');
+      }
+      if (this.ebayChecked) {
+        ebayList = this.resultList.filter(item => item.vendor === 'EBAY');
+      }
+
+      let tmp: Item[] = [];
+
+      if (walmartList) {
+        tmp = tmp.concat(walmartList);
+      }
+      if (ebayList) {
+        tmp = tmp.concat(ebayList);
+      }
+      this.resultList = tmp;
+    }
+
+    if (this.oneStarChecked
+    || this.twoStarsChecked
+    || this.threeStarsChecked
+    || this.fourStarsChecked
+    || this.fiveStarsChecked) {
+      let oneStarsList: Item[];
+      let twoStarsList: Item[];
+      let threeStarsList: Item[];
+      let fourStarsList: Item[];
+      let fiveStarsList: Item[];
+
+      if (this.oneStarChecked) {
+        oneStarsList =  this.resultList.filter(item => item.rating === 1);
+      }
+      if (this.twoStarsChecked) {
+        twoStarsList = this.resultList.filter(item => item.rating === 2);
+      }
+      if (this.threeStarsChecked) {
+        threeStarsList = this.resultList.filter(item => item.rating === 3);
+      }
+      if (this.fourStarsChecked) {
+        fourStarsList = this.resultList.filter(item => item.rating === 4);
+      }
+      if (this.fiveStarsChecked) {
+        fiveStarsList = this.resultList.filter(item => item.rating === 5);
+      }
+
+      let tmp: Item[] = [];
+
+      if (oneStarsList) {
+        tmp = tmp.concat(oneStarsList);
+      }
+      if (twoStarsList) {
+        tmp = tmp.concat(twoStarsList);
+      }
+      if (threeStarsList) {
+        tmp = tmp.concat(threeStarsList);
+      }
+      if (fourStarsList) {
+        tmp = tmp.concat(fourStarsList);
+      }
+      if (fiveStarsList) {
+        tmp = tmp.concat(fiveStarsList);
+      }
+      this.resultList = tmp;
+    }
+
 
   }
 

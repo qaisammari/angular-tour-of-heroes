@@ -54,3 +54,39 @@
   margin: 0 1rem;
   color: #fff;
 }
+
+
+
+/*side nav*/
+sidenavs {
+  height: 100%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 1rem;
+  margin-right: 4rem;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.sidenavs a {
+  padding: 6px 8px 6px 16px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+}
+
+.sidenavs a:hover {
+  color: #f1f1f1;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenavs {padding-top: 15px;}
+  .sidenavs a {font-size: 18px;}
+}
