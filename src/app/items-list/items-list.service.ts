@@ -10,7 +10,7 @@ import {HttpResponse} from '../models/HttpResponse';
   providedIn: 'root'
 })
 export class ItemsListService {
-  private itemsUrl = 'http://130.211.113.239:8080/searchItem';  // URL to web api
+  private itemsUrl = 'https://api.triphop.com:8080/searchItem';  // URL to web api
 
 
   constructor( private http: HttpClient ) { }
