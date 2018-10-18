@@ -1,5 +1,5 @@
 
-<div class="c ci">
+<div class="c ci" *ngIf="!resultList">
   <div class="d iv jc offset-m1">
     <div class="c">
       <div class="d iv"><h2 class="section-title">Features</h2></div>
@@ -142,7 +142,6 @@
       <div action="#" style="display: flex;">
         <span>
           <select class="browser-default" [(ngModel)]="selectedSort" (ngModelChange)="sortResults($event)">
-           <option value="" selected="selected">Default Sorting</option>
            <option *ngFor="let item of sorters" [value]="item.value">{{item.title}}</option>
         </select>
         </span>

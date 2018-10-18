@@ -32,6 +32,10 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
   sorters: Sorter[] = [
     {
+      title: 'Default Sorting',
+      value: ''
+    },
+    {
       title: 'Sort Price (Low To High)',
       value: 'price:asc'
     },
