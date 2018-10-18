@@ -3,6 +3,7 @@ import {ItemsListService} from './items-list.service';
 import {Location} from '@angular/common';
 import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
 import {Item} from '../models/Item';
+import {Sorter} from '../models/Filter';
 
 
 @Component({
@@ -28,6 +29,27 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   minPriceFilter: number;
   destinationsFilter: string[];
   @Output() loadingEvent = new EventEmitter<boolean>();
+
+  sorters: Sorter[] = [
+    {
+      title: 'Sort Price (Low To High)',
+      value: 'price:asc'
+    },
+    {
+      title: 'Sort Price (High To Low)',
+      value: 'price:desc'
+    },
+    {
+      title: 'Sort Rating (Low To High)',
+      value: 'star:asc'
+    },
+    {
+      title: 'Sort Rating (High To Low)',
+      value: 'star:desc'
+    }
+  ];
+
+  selectedSort: string;
 
 
   constructor(private route: ActivatedRoute,
@@ -287,5 +309,35 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     this.minPriceFilter = $event.from;
     this.filterAll()
     return;
+  }
+
+  sortResults($event) {
+    this.filterAll();
+    switch ($event) {
+      case 'price:asc':
+        this.resultList.sort(function(a, b) {
+          return a.itemPrice - b.itemPrice;
+        });
+        break;
+
+      case 'price:desc':
+        this.resultList.sort(function(b, a) {
+          return a.itemPrice - b.itemPrice;
+        });
+        break;
+       case 'star:asc':
+          this.resultList.sort(function(a, b) {
+            return a.rating - b.rating;
+          });
+          break;
+
+        case 'star:desc':
+          this.resultList.sort(function(b, a) {
+            return a.rating - b.rating;
+          });
+          break;
+      default:
+        break;
+    }
   }
 }

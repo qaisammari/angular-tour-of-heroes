@@ -4,7 +4,7 @@
     <a class="btn-floating" [class]="loading? 'btn-floating pulse': 'btn-floating'"><i class="material-icons">search</i></a>
 
     <div class="autocomplete">
-      <div style="display: flex"> <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword"
+      <div class="input-button"> <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword"
              placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)"><a class="waves-effect waves-light btn" (click)="goToList(keyword)">Search</a></div>
       <div id="myInputautocomplete-list" class="autocomplete-items">
         <div class="collection" *ngIf="items && showAutocomplete">

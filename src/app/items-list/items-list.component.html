@@ -1,73 +1,110 @@
-<span class="new badge" data-badge-caption="Provider Filter">1</span>
 
-<nav class="filter" xmlns="">
-  <div action="#" style="display: flex;">
+<div class="c ci">
+  <div class="d iv jc offset-m1">
+    <div class="c">
+      <div class="d iv"><h2 class="section-title">Features</h2></div>
+      <div class="d iv jo kk">
+        <h4><i class="icon-light-bulb"></i></h4>
+        <p class="ek">This is a cool feature about your product! It really separates you from the crowd.</p>
+      </div>
+      <div class="d iv jo kk">
+        <h4><i class="icon-bolt"></i></h4>
+        <p class="ek">This is a cool feature about your product! It really separates you from the crowd.</p>
+      </div>
+      <div class="d iv jo kk">
+        <h4><i class="icon-rocket"></i></h4>
+        <p class="ek">This is a cool feature about your product! It really separates you from the crowd.</p>
+      </div>
+      <div class="d iv jo kk">
+        <h4><i class="icon-settings"></i></h4>
+        <p class="ek">This is a cool feature about your product! It really separates you from the crowd.</p>
+      </div>
+      <div class="d iv jo kk">
+        <h4><i class="icon-umbrella"></i></h4>
+        <p class="ek">This is a cool feature about your product! It really separates you from the crowd.</p>
+      </div>
+      <div class="d iv jo kk">
+        <h4><i class="icon-compass"></i></h4>
+        <p class="ek">This is a cool feature about your product! It really separates you from the crowd.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="filters-sorters">
+  <div class="filters-container" *ngIf="resultList">
+    <span class="new badge" data-badge-caption="Provider Filter">1</span>
+
+    <nav class="filter" xmlns="">
+      <div action="#" style="display: flex;">
     <span>
       <label>
         <input type="checkbox" (change)="walmartFilter($event)"/>
         <span>Walmart</span>
       </label>
     </span>
-    <span>
+        <span>
       <label>
         <input type="checkbox" (change)="ebayFilter($event)"/>
         <span>Ebay</span>
       </label>
     </span>
-  </div>
-</nav>
+      </div>
+    </nav>
 
-<span class="new badge" data-badge-caption="Shipment Filter">2</span>
-<nav class="filter">
-  <div action="#" style="display: flex;" *ngIf="destinations">
-    <span *ngFor="let destination of destinations" >
+    <span class="new badge" data-badge-caption="Shipment Filter">2</span>
+    <nav class="filter">
+      <div action="#" style="display: flex;" *ngIf="destinations">
+    <span *ngFor="let destination of destinations">
       <label>
         <input type="checkbox" (change)="destinationFilter(destination, $event)"/>
         <span>{{destination}}</span>
       </label>
     </span>
-  </div>
-</nav>
+      </div>
+    </nav>
 
-<span class="new badge" data-badge-caption="Rating Filter">3</span>
+    <span class="new badge" data-badge-caption="Rating Filter">3</span>
 
-<nav class="filter">
-  <div action="#" style="display: flex;">
+    <nav class="filter">
+      <div action="#" style="display: flex;">
     <span>
       <label>
         <input type="checkbox" (change)="oneStarFilter($event)"/>
         <span>one star</span>
       </label>
     </span>
-    <span>
+        <span>
       <label>
         <input type="checkbox" (change)="twoStarsFilter($event)"/>
         <span>two stars</span>
       </label>
     </span>
-    <span>
+        <span>
       <label>
         <input type="checkbox" (change)="threeStarsFilter($event)"/>
         <span>three stars</span>
       </label>
     </span>
-    <span>
+        <span>
       <label>
         <input type="checkbox" (change)="fourStarsFilter($event)"/>
         <span>four stars</span>
       </label>
     </span>
-    <span>
+        <span>
       <label>
         <input type="checkbox" (change)="fiveStarsFilter($event)"/>
         <span>five star</span>
       </label>
     </span>
-  </div>
-</nav>
+      </div>
+    </nav>
 
-<span class="new badge" data-badge-caption="Price Filter">4</span>
-<nav class="slider-container">
+    <span class="new badge" data-badge-caption="Price Filter">4</span>
+    <nav class="slider-container">
 
 
   <span class="slider-span">
@@ -94,61 +131,102 @@
 </span>
 
 
-</nav>
+    </nav>
+  </div>
+
+  <div class="sorters-container" *ngIf="resultList">
+
+    <span class="new badge" data-badge-caption="Sort Result">&nbsp;</span>
+
+    <nav class="sorters" xmlns="">
+      <div action="#" style="display: flex;">
+        <span>
+          <select class="browser-default" [(ngModel)]="selectedSort" (ngModelChange)="sortResults($event)">
+           <option value="" selected="selected">Default Sorting</option>
+           <option *ngFor="let item of sorters" [value]="item.value">{{item.title}}</option>
+        </select>
+        </span>
+      </div>
+    </nav>
+  </div>
+</div>
 <!--<div class="flex">-->
-  <!--<div class="sidenavs">-->
-    <!--<div>-->
-      <!--<label>-->
-        <!--<input type="checkbox" (change)="walmartFilter($event)"/>-->
-        <!--<span>Walmart</span>-->
-      <!--</label>-->
-    <!--</div>-->
-    <!--<div>-->
-      <!--<label>-->
-        <!--<input type="checkbox" (change)="ebayFilter($event)"/>-->
-        <!--<span>Ebay</span>-->
-      <!--</label>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="sidenavs">-->
+<!--<div>-->
+<!--<label>-->
+<!--<input type="checkbox" (change)="walmartFilter($event)"/>-->
+<!--<span>Walmart</span>-->
+<!--</label>-->
+<!--</div>-->
+<!--<div>-->
+<!--<label>-->
+<!--<input type="checkbox" (change)="ebayFilter($event)"/>-->
+<!--<span>Ebay</span>-->
+<!--</label>-->
+<!--</div>-->
+<!--</div>-->
 
 
-  <div class="row">
-    <div class="col s12 cards-container">
-      <div *ngFor="let item of resultList">
-        <div class="card">
-          <div class="card-image waves-effect waves-block waves-light">
+<!--<div class="row">-->
+  <!--<div class="col s12 cards-container">-->
+    <div *ngFor="let item of resultList">
+      <div class="card">
+        <div class="card-information">
+          <div class="card-image">
             <img class="activator" src="{{item.imageUrlList[0]}}">
           </div>
           <div class="card-content">
-            <span class="card-title activator grey-text text-darken-4">{{item.itemName}}<i class="material-icons right">more_vert</i></span>
-            <p><a target="_blank" href="{{item.redirectUrl}}"> {{item.itemPrice}}{{item.currency}} Buy Now</a></p>
-            <p><span class="fa fa-star" [class.checked]="item.rating>=1"></span>
-              <span class="fa fa-star" [class.checked]="item.rating>=2"></span>
-              <span class="fa fa-star" [class.checked]="item.rating>=3"></span>
-              <span class="fa fa-star" [class.checked]="item.rating>=4"></span>
-              <span class="fa fa-star" [class.checked]="item.rating>=5"></span></p>
-            <p><img src="/assets/img/wallmart.png" *ngIf="item.vendor == 'WALMART'"></p>
-            <p><img src="/assets/img/ebay.png" *ngIf="item.vendor == 'EBAY'"></p>
-            <p>Shipment: {{item.shipToDestinations}}</p>
-          </div>
-          <div class="card-reveal">
-            <div>
-            <span class="card-title grey-text text-darken-4" style="font-size: 0.8rem">{{item.itemName}}<i
-              class="material-icons right">close</i></span>
+              <span class="card-title activator grey-text text-darken-4">{{item.itemName}}<i class="material-icons right">more_vert</i></span>
+              <p><a target="_blank" href="{{item.redirectUrl}}"> {{item.itemPrice}}{{item.currency}} Buy Now</a></p>
+              <p><span class="fa fa-star" [class.checked]="item.rating>=1"></span>
+                <span class="fa fa-star" [class.checked]="item.rating>=2"></span>
+                <span class="fa fa-star" [class.checked]="item.rating>=3"></span>
+                <span class="fa fa-star" [class.checked]="item.rating>=4"></span>
+                <span class="fa fa-star" [class.checked]="item.rating>=5"></span></p>
+              <p><img src="/assets/img/wallmart.png" *ngIf="item.vendor == 'WALMART'"></p>
+              <p><img src="/assets/img/ebay.png" *ngIf="item.vendor == 'EBAY'"></p>
+              <p>Shipment: {{item.shipToDestinations}}</p>
             </div>
-            <ul class="collection" style="font-size: 0.8rem">
-              <li class="collection-item">Provider: {{item.vendor}}</li>
-              <li class="collection-item">Location: {{item.location}}</li>
-              <li class="collection-item">Category: {{item.vendorCategory}}</li>
-              <li class="collection-item">Section: {{item.vendorSubCategory}}</li>
-              <li class="collection-item">UPC: {{item.upc}}</li>
-            </ul>
+
           </div>
+
+        <div class="card-reveal">
+          <div>
+              <span class="card-title grey-text text-darken-4" style="font-size: 0.8rem">{{item.itemName}}<i
+                class="material-icons right">close</i></span>
+          </div>
+          <ul class="collection" style="font-size: 0.8rem">
+            <li *ngIf="item.vendor" class="collection-item">Provider: {{item.vendor}}</li>
+            <li *ngIf="item.location" class="collection-item">Location: {{item.location}}</li>
+            <li *ngIf="item.vendorCategory" class="collection-item">Category: {{item.vendorCategory}}</li>
+            <li *ngIf="item.vendorSubCategory" class="collection-item">Section: {{item.vendorSubCategory}}</li>
+            <li *ngIf="item.upc" class="collection-item">UPC: {{item.upc}}</li>
+          </ul>
         </div>
+
+        <a class="btn-floating btn-large waves-effect waves-light red" target="_blank" href="{{item.redirectUrl}}"><i class="material-icons">call_made</i></a>
 
 
       </div>
+
+
     </div>
-  </div>
+  <!--</div>-->
+<!--</div>-->
 
 <!--</div>-->
+
+<ul class="pagination" *ngIf="resultList">
+  <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
+  <li class="active"><a href="#!">1</a></li>
+  <li class="waves-effect"><a href="#">2</a></li>
+  <li class="waves-effect"><a href="#">3</a></li>
+  <li class="waves-effect"><a href="#">4</a></li>
+  <li class="waves-effect"><a href="#">5</a></li>
+  <li class="waves-effect"><a href="#">6</a></li>
+  <li class="waves-effect"><a href="#">7</a></li>
+  <li class="waves-effect"><a href="#">8</a></li>
+  <li class="waves-effect"><a href="#">9</a></li>
+  <li class="waves-effect"><a href="#">10</a></li>
+  <li class="waves-effect"><a href="#"><i class="material-icons">chevron_right</i></a></li>
+</ul>
