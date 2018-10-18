@@ -142,7 +142,7 @@
       <div action="#" style="display: flex;">
         <span>
           <select class="browser-default" [(ngModel)]="selectedSort" (ngModelChange)="sortResults($event)">
-           <option *ngFor="let item of sorters" [value]="item.value">{{item.title}}</option>
+             <option *ngFor="let item of sorters" [value]="item.value">{{item.title}}</option>
         </select>
         </span>
       </div>
@@ -184,7 +184,7 @@
                 <span class="fa fa-star" [class.checked]="item.rating>=5"></span></p>
               <p><img src="/assets/img/wallmart.png" *ngIf="item.vendor == 'WALMART'"></p>
               <p><img src="/assets/img/ebay.png" *ngIf="item.vendor == 'EBAY'"></p>
-              <p>Shipment: {{item.shipToDestinations}}</p>
+              <p class="shipment">Shipment: {{item.shipToDestinations}}</p>
             </div>
 
           </div>

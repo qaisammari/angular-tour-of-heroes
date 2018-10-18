@@ -33,7 +33,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   sorters: Sorter[] = [
     {
       title: 'Default Sorting',
-      value: ''
+      value: '-1'
     },
     {
       title: 'Sort Price (Low To High)',
@@ -81,8 +81,8 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       this.sendLoadingEvent(true);
       this.itemsListService.getItems(keyword)
         .subscribe(list => {
-          this.resultList = list.itemList;
-          this.originalList = list.itemList;
+          this.resultList = list.itemList.slice();
+          this.originalList = list.itemList.slice();
           this.getUniqueDestinationsAndMaxPrice();
           this.sendLoadingEvent(false);
         });
@@ -186,7 +186,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
   filterAll() {
 
-    this.resultList = this.originalList;
+    this.resultList = this.originalList.slice();
 
     if (this.walmartChecked
       || this.ebayChecked) {
@@ -329,6 +329,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
           return a.itemPrice - b.itemPrice;
         });
         break;
+
        case 'star:asc':
           this.resultList.sort(function(a, b) {
             return a.rating - b.rating;
@@ -340,6 +341,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
             return a.rating - b.rating;
           });
           break;
+
       default:
         break;
     }

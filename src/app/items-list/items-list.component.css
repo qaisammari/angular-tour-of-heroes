@@ -192,3 +192,13 @@ p.ek{color:inherit;}
 .v .d{min-height:1px;}
 /*! CSS Used fontfaces */
 @font-face{font-family:'simple-line-icons';src:url("https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/simple-line-icons.eot?2k1x4j");src:url("https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/simple-line-icons.eot?2k1x4j#iefix") format("embedded-opentype"),url("https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/simple-line-icons.ttf?2k1x4j") format("truetype"),url("https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/simple-line-icons.woff?2k1x4j") format("woff"),url("https://cdn.shopify.com/s/files/1/1775/8583/t/1/assets/simple-line-icons.svg?2k1x4j#simple-line-icons") format("svg");font-weight:normal;font-style:normal;}
+
+
+.shipment{
+  color: black;
+  background: #1de9c3;
+  border-radius: 0.5rem;
+  width: fit-content;
+  padding: 0.3rem 0.5rem;
+  margin-top: 1rem !important;
+}
