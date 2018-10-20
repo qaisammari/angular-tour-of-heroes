@@ -147,6 +147,10 @@ input[_ngcontent-c2] {
     .btn-floating {
       display: none;
     }
+
+    input {
+      padding: 0;
+    }
   }
 
 }

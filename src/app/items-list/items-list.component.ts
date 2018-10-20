@@ -81,8 +81,8 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       this.sendLoadingEvent(true);
       this.itemsListService.getItems(keyword)
         .subscribe(list => {
-          this.resultList = list.itemList.slice();
-          this.originalList = list.itemList.slice();
+          this.resultList = this.shuffle(list.itemList);
+          this.originalList = this.resultList.slice();
           this.getUniqueDestinationsAndMaxPrice();
           this.sendLoadingEvent(false);
         });
@@ -345,5 +345,25 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       default:
         break;
     }
+  }
+
+
+  shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    // While there remain elements to shuffle...
+    while (0 !== currentIndex) {
+
+      // Pick a remaining element...
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      // And swap it with the current element.
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
   }
 }
