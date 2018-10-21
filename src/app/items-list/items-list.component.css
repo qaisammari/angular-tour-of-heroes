@@ -166,15 +166,42 @@ select {
   display: flex;
 }
 
+.filters-span {
+  width: 33%;
+  min-width: 10rem !important;
+}
+
+.filter .filter-div {
+  display: flex;
+
+}
+
+.filter {
+  height: unset;
+}
+
 @media (max-width: 767px) {
   .card .card-information {
     height: 18rem;
     display: inline-table;
   }
 
-  .filter {
-    height: 5rem;
+
+
+  .filter .filter-div {
+    display: inline-grid;
+    margin: 0;
+    width: 100%;
   }
+
+  .filters-span {
+    width: 100%;
+    position: relative;
+    padding: 0 1.5rem 0 0 ;
+  }
+
+
+
 }
 .card {
   margin-bottom: 1rem;

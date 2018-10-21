@@ -490,8 +490,8 @@
     <span class="new badge" data-badge-caption="Filter">&nbsp;</span>
 
     <nav class="filter" xmlns="">
-      <div action="#" style="display: flex;">
-        <span>
+      <div action="#" class="filter-div">
+        <span class="filters-span">
           <ng-multiselect-dropdown
             [placeholder]="'Marketplace'"
             [data]="marketplaceDropdownList"
@@ -503,7 +503,7 @@
           </ng-multiselect-dropdown>
         </span>
 
-        <span>
+        <span class="filters-span">
           <ng-multiselect-dropdown
             [placeholder]="'Rating'"
             [data]="starRatingDropdownList"
@@ -515,7 +515,7 @@
           </ng-multiselect-dropdown>
         </span>
 
-        <span>
+        <span class="filters-span">
           <ng-multiselect-dropdown
             [placeholder]="'Shipment'"
             [data]="shipmentDropdownList"
