@@ -1,28 +1,30 @@
 <div class="search-container" xmlns="">
-  <div class="search-box">
-    <!--<input [(ngModel)]="selectedHero.name" placeholder="What do you want to shop today?">-->
-    <a class="btn-floating" [class]="loading? 'btn-floating pulse': 'btn-floating'"><i class="material-icons">search</i></a>
+  <form  (submit)="goToList(keyword)">
+    <div class="search-box">
+      <!--<input [(ngModel)]="selectedHero.name" placeholder="What do you want to shop today?">-->
+      <a class="btn-floating" [class]="loading? 'btn-floating pulse': 'btn-floating'"><i class="material-icons">search</i></a>
 
-    <div class="autocomplete">
-      <div class="input-button"> <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword"
-             placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)"><a class="waves-effect waves-light btn" (click)="goToList(keyword)">Search</a></div>
-      <div id="myInputautocomplete-list" class="autocomplete-items">
-        <div class="collection" *ngIf="items && showAutocomplete">
-          <div>
-            <a class="collection-item" *ngFor="let item of items" (click)="goToList(item.itemTitle)">
-              {{item.itemTitle}}
-            </a>
+      <div class="autocomplete">
+        <div class="input-button"> <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword" name="keyword"
+                                          placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)"><a class="waves-effect waves-light btn" (click)="goToList(keyword)">Search</a></div>
+        <div id="myInputautocomplete-list" class="autocomplete-items">
+          <div class="collection" *ngIf="items && showAutocomplete">
+            <div>
+              <a class="collection-item" *ngFor="let item of items" (click)="goToList(item.itemTitle)">
+                {{item.itemTitle}}
+              </a>
+            </div>
+
           </div>
-
+          <!--<ul class="autocomplete-content dropdown-content">-->
+          <!--<li *ngFor="let item of items" (click)="goToList(item.itemTitle)">-->
+          <!--<span>{{item.itemTitle}}</span>-->
+          <!--</li>-->
+          <!--</ul>-->
         </div>
-        <!--<ul class="autocomplete-content dropdown-content">-->
-        <!--<li *ngFor="let item of items" (click)="goToList(item.itemTitle)">-->
-        <!--<span>{{item.itemTitle}}</span>-->
-        <!--</li>-->
-        <!--</ul>-->
       </div>
     </div>
-  </div>
+  </form>
 </div>
 
 <app-items-list (loadingEvent)="receiveLoadingEvent($event)"></app-items-list>
