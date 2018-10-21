@@ -29,6 +29,13 @@ export class ItemsListComponent implements OnInit, OnDestroy {
   minPriceFilter: number;
   destinationsFilter: string[];
   @Output() loadingEvent = new EventEmitter<boolean>();
+  marketplaceDropdownList = [];
+  starRatingDropdownList = [];
+  shipmentDropdownList = [];
+  marketplaceSelectedItems = [];
+  starRatingSelectedItems = [];
+  shipmentSelectedItems = [];
+  dropdownSettings = {};
 
   sorters: Sorter[] = [
     {
@@ -72,8 +79,70 @@ export class ItemsListComponent implements OnInit, OnDestroy {
         }
       }
     });
+
+    this.marketplaceDropdownList = [
+      { item_id: 1, item_text: 'Ebay' },
+      { item_id: 2, item_text: 'Walmark' }
+    ];
+
+    this.starRatingDropdownList = [
+      { item_id: 5, item_text: 'Five Stars' },
+      { item_id: 4, item_text: 'Four Stars' },
+      { item_id: 3, item_text: 'Three Stars' },
+      { item_id: 2, item_text: 'Two Stars' },
+      { item_id: 1, item_text: 'One Star' }
+    ];
+
+    this.dropdownSettings = {
+      singleSelection: false,
+      idField: 'item_id',
+      textField: 'item_text',
+      selectAllText: 'Select All',
+      unSelectAllText: 'UnSelect All',
+      itemsShowLimit: 10,
+      allowSearchFilter: false,
+      enableCheckAll: false
+    };
   }
 
+  onMarketplaceSelect (item:any) {
+    console.log(item);
+    if(item.item_id === 1) {
+      this.ebayChecked = true;
+    }
+
+    if(item.item_id === 2) {
+      this.walmartChecked = true;
+    }
+
+    this.filterAll();
+  }
+
+  onMarketplaceDeSelect (item:any) {
+    console.log(item);
+
+    if(item.item_id === 1) {
+      this.ebayChecked = false;
+    }
+
+    if(item.item_id === 2) {
+      this.walmartChecked = false;
+    }
+
+    this.filterAll();
+  }
+
+
+  onShipmentSelect (item:any) {
+    console.log(item);
+    this.destinationFilter2(item.item_text, true);
+  }
+
+  onShipmentDeSelect (item:any) {
+    console.log(item);
+    this.destinationFilter2(item.item_text, false);
+
+  }
 
   getItemsList(): void {
     const keyword = this.route.snapshot.paramMap.get('keyword');
@@ -118,7 +187,7 @@ export class ItemsListComponent implements OnInit, OnDestroy {
     this.filterAll();
   }
 
-  destinationFilter(destination, event){
+  destinationFilter(destination, event) {
     let index = -1;
       if (this.destinationsFilter) {
         index = this.destinationsFilter.indexOf(destination);
@@ -133,6 +202,76 @@ export class ItemsListComponent implements OnInit, OnDestroy {
       }
     }
     this.filterAll();
+  }
+
+  destinationFilter2(destination, isAdd) {
+    let index = -1;
+    if (this.destinationsFilter) {
+      index = this.destinationsFilter.indexOf(destination);
+    } else {
+      this.destinationsFilter = [];
+    }
+    if (isAdd && index === -1) {
+      this.destinationsFilter.push(destination);
+    } else {
+      if (index !== -1) {
+        this.destinationsFilter.splice(index, 1);
+      }
+    }
+    this.filterAll();
+  }
+
+
+  onRatingItemSelect (item:any) {
+    console.log(item);
+    if(item.item_id === 1) {
+      this.oneStarChecked = true;
+    }
+
+    if(item.item_id === 2) {
+      this.twoStarsChecked = true;
+    }
+
+    if(item.item_id === 3) {
+      this.threeStarsChecked = true;
+    }
+
+    if(item.item_id === 4) {
+      this.fourStarsChecked = true;
+    }
+
+    if(item.item_id === 5) {
+      this.fiveStarsChecked = true;
+    }
+
+    this.filterAll();
+  }
+
+  onRatingItemDeSelect (item:any) {
+    console.log(item);
+
+    if(item.item_id === 1) {
+      this.oneStarChecked = false;
+    }
+
+    if(item.item_id === 2) {
+      this.twoStarsChecked = false;
+    }
+
+    if(item.item_id === 3) {
+      this.threeStarsChecked = false;
+    }
+
+    if(item.item_id === 4) {
+      this.fourStarsChecked = false;
+    }
+
+    if(item.item_id === 5) {
+      this.fiveStarsChecked = false;
+    }
+
+    this.filterAll();
+
   }
 
   oneStarFilter(event) {
@@ -286,11 +425,15 @@ export class ItemsListComponent implements OnInit, OnDestroy {
 
 
   getUniqueDestinationsAndMaxPrice() {
+    this.shipmentDropdownList = [];
     this.destinations = [];
     this.maxPrice = 0;
+    let item_id = 0;
     for (let i = 0; i < this.originalList.length; i++) {
       if (!this.destinations.includes(this.originalList[i].shipToDestinations)) {
         this.destinations.push(this.originalList[i].shipToDestinations);
+        this.shipmentDropdownList.push({item_id: item_id, item_text: this.originalList[i].shipToDestinations});
+        item_id++;
       }
       if (this.originalList[i].itemPrice > this.maxPrice) {
         this.maxPrice = this.originalList[i].itemPrice;

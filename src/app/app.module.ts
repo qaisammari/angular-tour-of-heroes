@@ -19,6 +19,7 @@ import {RouterModule} from '@angular/router';
 // import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 // import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { IonRangeSliderModule } from 'ng2-ion-range-slider';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 
 
@@ -30,7 +31,8 @@ import { IonRangeSliderModule } from 'ng2-ion-range-slider';
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    IonRangeSliderModule
+    IonRangeSliderModule,
+    NgMultiSelectDropDownModule.forRoot()
     // BrowserAnimationsModule,
     // MatButtonModule,
     // MatCheckboxModule,

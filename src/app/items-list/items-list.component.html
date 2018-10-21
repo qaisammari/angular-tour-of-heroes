@@ -487,86 +487,115 @@
 
 <div class="filters-sorters">
   <div class="filters-container" *ngIf="resultList">
-    <span class="new badge" data-badge-caption="Provider Filter">1</span>
+    <span class="new badge" data-badge-caption="Filter">&nbsp;</span>
 
     <nav class="filter" xmlns="">
       <div action="#" style="display: flex;">
-    <span>
-      <label>
-        <input type="checkbox" (change)="walmartFilter($event)"/>
-        <span>Walmart</span>
-      </label>
-    </span>
         <span>
-      <label>
-        <input type="checkbox" (change)="ebayFilter($event)"/>
-        <span>Ebay</span>
-      </label>
-    </span>
-        <span>
-          <div class="input-field col s12">
-    <select multiple>
-      <option value="" disabled selected>Choose your option</option>
-      <option value="1">Option 1</option>
-      <option value="2">Option 2</option>
-      <option value="3">Option 3</option>
-    </select>
-    <label>Materialize Multiple Select</label>
-  </div>
+          <ng-multiselect-dropdown
+            [placeholder]="'Filter on Marketplace'"
+            [data]="marketplaceDropdownList"
+            [(ngModel)]="marketplaceSelectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onMarketplaceSelect($event)"
+            (onDeSelect)="onMarketplaceDeSelect($event)"
+          >
+          </ng-multiselect-dropdown>
         </span>
+
+        <span>
+          <ng-multiselect-dropdown
+            [placeholder]="'Filter on Rating'"
+            [data]="starRatingDropdownList"
+            [(ngModel)]="starRatingSelectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onRatingItemSelect($event)"
+            (onDeSelect)="onRatingItemDeSelect($event)"
+          >
+          </ng-multiselect-dropdown>
+        </span>
+
+        <span>
+          <ng-multiselect-dropdown
+            [placeholder]="'Filter on Shipment'"
+            [data]="shipmentDropdownList"
+            [(ngModel)]="shipmentSelectedItems"
+            [settings]="dropdownSettings"
+            (onSelect)="onShipmentSelect($event)"
+            (onDeSelect)="onShipmentDeSelect($event)"
+          >
+          </ng-multiselect-dropdown>
+        </span>
+
       </div>
     </nav>
 
-    <span class="new badge" data-badge-caption="Shipment Filter">2</span>
-    <nav class="filter">
-      <div action="#" style="display: flex;" *ngIf="destinations">
-    <span *ngFor="let destination of destinations">
-      <label>
-        <input type="checkbox" (change)="destinationFilter(destination, $event)"/>
-        <span>{{destination}}</span>
-      </label>
-    </span>
-      </div>
-    </nav>
+    <!--<nav class="filter" xmlns="">-->
+      <!--<div action="#" style="display: flex;">-->
+    <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="walmartFilter($event)"/>-->
+        <!--<span>Walmart</span>-->
+      <!--</label>-->
+    <!--</span>-->
+        <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="ebayFilter($event)"/>-->
+        <!--<span>Ebay</span>-->
+      <!--</label>-->
+    <!--</span>-->
+      <!--</div>-->
+    <!--</nav>-->
 
-    <span class="new badge" data-badge-caption="Rating Filter">3</span>
+    <!--<span class="new badge" data-badge-caption="Shipment Filter">2</span>-->
+    <!--<nav class="filter">-->
+      <!--<div action="#" style="display: flex;" *ngIf="destinations">-->
+    <!--<span *ngFor="let destination of destinations">-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="destinationFilter(destination, $event)"/>-->
+        <!--<span>{{destination}}</span>-->
+      <!--</label>-->
+    <!--</span>-->
+      <!--</div>-->
+    <!--</nav>-->
 
-    <nav class="filter">
-      <div action="#" style="display: flex;">
-    <span>
-      <label>
-        <input type="checkbox" (change)="oneStarFilter($event)"/>
-        <span>one star</span>
-      </label>
-    </span>
-        <span>
-      <label>
-        <input type="checkbox" (change)="twoStarsFilter($event)"/>
-        <span>two stars</span>
-      </label>
-    </span>
-        <span>
-      <label>
-        <input type="checkbox" (change)="threeStarsFilter($event)"/>
-        <span>three stars</span>
-      </label>
-    </span>
-        <span>
-      <label>
-        <input type="checkbox" (change)="fourStarsFilter($event)"/>
-        <span>four stars</span>
-      </label>
-    </span>
-        <span>
-      <label>
-        <input type="checkbox" (change)="fiveStarsFilter($event)"/>
-        <span>five star</span>
-      </label>
-    </span>
-      </div>
-    </nav>
+    <!--<span class="new badge" data-badge-caption="Rating Filter">3</span>-->
+    <!--<nav class="filter">-->
+      <!--<div action="#" style="display: flex;">-->
+    <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="oneStarFilter($event)"/>-->
+        <!--<span>one star</span>-->
+      <!--</label>-->
+    <!--</span>-->
+        <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="twoStarsFilter($event)"/>-->
+        <!--<span>two stars</span>-->
+      <!--</label>-->
+    <!--</span>-->
+        <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="threeStarsFilter($event)"/>-->
+        <!--<span>three stars</span>-->
+      <!--</label>-->
+    <!--</span>-->
+        <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="fourStarsFilter($event)"/>-->
+        <!--<span>four stars</span>-->
+      <!--</label>-->
+    <!--</span>-->
+        <!--<span>-->
+      <!--<label>-->
+        <!--<input type="checkbox" (change)="fiveStarsFilter($event)"/>-->
+        <!--<span>five star</span>-->
+      <!--</label>-->
+    <!--</span>-->
+      <!--</div>-->
+    <!--</nav>-->
 
-    <span class="new badge" data-badge-caption="Price Filter">4</span>
+    <span class="new badge" data-badge-caption="Price Range">&nbsp;</span>
     <nav class="slider-container">
 
 
