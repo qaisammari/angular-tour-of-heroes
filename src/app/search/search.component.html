@@ -5,8 +5,18 @@
       <a class="btn-floating" [class]="loading? 'btn-floating pulse': 'btn-floating'"><i class="material-icons">search</i></a>
 
       <div class="autocomplete">
-        <div class="input-button"> <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword" name="keyword"
-                                          placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)"><a class="waves-effect waves-light btn" (click)="goToList(keyword)">Search</a></div>
+        <div class="input-button">
+          <input id="autocomplete-input" class="autocomplete form-control" [(ngModel)]="keyword" name="keyword"
+                                          placeholder="What do you want to shop today?" (ngModelChange)="getSuggestions($event)">
+          <!--<a class="waves-effect waves-light btn" (click)="goToList(keyword)">Search</a>-->
+
+
+          <div [class]="loading? 'btn btn-default ld-ext-right running': 'btn btn-default ld-ext-right'" (click)="goToList(keyword)">
+           Search
+            <div class="ld ld-ring ld-spin"></div>
+          </div>
+
+        </div>
         <div id="myInputautocomplete-list" class="autocomplete-items">
           <div class="collection" *ngIf="items && showAutocomplete">
             <div>
